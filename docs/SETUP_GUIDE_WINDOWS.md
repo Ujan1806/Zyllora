@@ -16,14 +16,14 @@ This guide covers setup and running both the **FastAPI Backend** and **React + V
 
 ### Step 1: Open PowerShell and navigate to the backend directory
 ```powershell
-cd "D:\Ujan Dutta\Zyllora\backend"
+cd backend
 ```
 
 ### Step 2: Create a virtual environment (if not already created)
 ```powershell
 python -m venv .venv
 ```
-*(If `python` is not directly in your system PATH, use your full Python path e.g.: `& "C:\Users\SANJOY DUTTA\AppData\Local\Programs\Python\Python312\python.exe" -m venv .venv`)*
+*(If `python` is not directly in your system PATH, use your local Python executable path e.g.: `& "C:\Path\To\Python312\python.exe" -m venv .venv`)*
 
 ### Step 3: Activate the virtual environment
 ```powershell
@@ -64,7 +64,7 @@ The backend API is now running at:
 
 ### Step 1: Open a new PowerShell terminal and navigate to frontend
 ```powershell
-cd "D:\Ujan Dutta\Zyllora\frontend"
+cd frontend
 ```
 
 ### Step 2: Install Node Dependencies
@@ -98,6 +98,6 @@ Open your browser at:
 1. Log in to [Supabase](https://supabase.com).
 2. Create a new project or select an existing one.
 3. Open the **SQL Editor** in your Supabase Dashboard.
-4. Open `D:\Ujan Dutta\Zyllora\database\migrations\001_initial_schema.sql`.
+4. Open `database/migrations/001_initial_schema.sql`.
 5. Paste the entire SQL script and click **Run**.
 6. This creates the required tables (`profiles`, `documents`, `document_chunks`, `chat_sessions`, `chat_messages`, `quizzes`, `quiz_questions`, `quiz_attempts`, `usage_records`) with Row Level Security (RLS) enabled.

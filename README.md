@@ -55,7 +55,7 @@ zyllora/
 
 ### 1. Launch FastAPI Backend
 ```powershell
-cd "D:\Ujan Dutta\Zyllora\backend"
+cd backend
 .\.venv\Scripts\Activate.ps1
 uvicorn app.main:app --port 8000 --reload
 ```
@@ -64,7 +64,7 @@ Health Check: [http://localhost:8000/api/v1/health](http://localhost:8000/api/v1
 
 ### 2. Launch React Frontend
 ```powershell
-cd "D:\Ujan Dutta\Zyllora\frontend"
+cd frontend
 npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
