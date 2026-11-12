@@ -43,11 +43,14 @@ Copy-Item .env.example .env
 ```
 Open `backend/.env` in your editor and configure:
 - `SUPABASE_JWT_SECRET`: Found in your Supabase Dashboard under `Project Settings > API > JWT Settings > JWT Secret`.
+- `AI_PROVIDER`: `gemini` (recommended free tier) or `mock` (for offline testing)
+- `GEMINI_API_KEY`: Get a free key at [Google AI Studio](https://aistudio.google.com/app/apikey) (Free tier: 1,500 requests/day, 15 RPM).
 
 ### Step 6: Run Backend Automated Tests
 ```powershell
 pytest -v
 ```
+*(Runs 27 automated tests verifying JWT auth, PDF processing, semantic vector embeddings, RAG retrieval ranking, prompt injection firewall, and cross-user isolation)*
 
 ### Step 7: Launch the FastAPI Backend Server
 ```powershell
@@ -57,6 +60,8 @@ The backend API is now running at:
 - **Base URL**: `http://localhost:8000`
 - **Interactive OpenAPI Docs**: `http://localhost:8000/docs`
 - **Health Check Endpoint**: `http://localhost:8000/api/v1/health`
+- **Documents Endpoint**: `http://localhost:8000/api/v1/documents`
+- **Tutor Chat Endpoint**: `http://localhost:8000/api/v1/tutor/chat`
 
 ---
 
@@ -82,7 +87,7 @@ Open `frontend/.env` and update:
 - `VITE_SUPABASE_URL`: Your Supabase Project URL (`https://<ref>.supabase.co`)
 - `VITE_SUPABASE_ANON_KEY`: Your Supabase Anon Public Key (Found in Supabase Dashboard > Project Settings > API)
 
-*(Note: Even without Supabase keys, the frontend includes a **Preview / Instant Demo Mode** allowing full navigation through Onboarding, Dashboard, and Settings!)*
+*(Note: Even without Supabase cloud keys, the frontend includes an **Instant Demo Mode** allowing complete testing of drag-and-drop PDF uploads, background processing status, and the interactive AI Tutor Workspace!)*
 
 ### Step 4: Launch the Frontend Development Server
 ```powershell
@@ -93,11 +98,11 @@ Open your browser at:
 
 ---
 
-## 3. Supabase Database Migration Setup
+## 3. Supabase Database & Vector Setup
 
 1. Log in to [Supabase](https://supabase.com).
 2. Create a new project or select an existing one.
 3. Open the **SQL Editor** in your Supabase Dashboard.
-4. Open `database/migrations/001_initial_schema.sql`.
-5. Paste the entire SQL script and click **Run**.
-6. This creates the required tables (`profiles`, `documents`, `document_chunks`, `chat_sessions`, `chat_messages`, `quizzes`, `quiz_questions`, `quiz_attempts`, `usage_records`) with Row Level Security (RLS) enabled.
+4. Run `database/migrations/001_initial_schema.sql` (Creates core tables with RLS).
+5. Run `database/migrations/002_storage_and_documents.sql` (Creates private storage bucket with user-isolated RLS).
+6. Run `database/migrations/003_pgvector_and_embeddings.sql` (Enables pgvector, HNSW cosine index, and vector similarity search function).

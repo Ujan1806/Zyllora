@@ -30,6 +30,38 @@ class Settings(BaseSettings):
     SUPABASE_URL: str = "https://placeholder-project.supabase.co"
     SUPABASE_ANON_KEY: str = "placeholder-anon-key"
     SUPABASE_JWT_SECRET: str = "placeholder-jwt-secret-replace-with-actual-supabase-secret"
+    SUPABASE_SERVICE_ROLE_KEY: str = ""
+    STORAGE_BUCKET: str = "documents"
+    LOCAL_STORAGE_DIR: str = "storage/documents"
+
+    # Document & PDF Upload Limits
+    MAX_FILE_SIZE_MB: int = 50
+    MAX_PAGE_COUNT: int = 200
+    PROCESSING_TIMEOUT_SECONDS: int = 300
+
+    # Text Chunking Settings (500–800 tokens approx., 1 token ~ 4 chars or 0.75 words)
+    CHUNK_TARGET_WORDS: int = 600
+    CHUNK_OVERLAP_WORDS: int = 80
+
+    # AI Provider & Model Configuration
+    AI_PROVIDER: str = "gemini"  # "gemini" | "openai" | "groq" | "mock"
+    GEMINI_API_KEY: str = ""
+    GEMINI_MODEL: str = "gemini-1.5-flash"
+
+    OPENAI_API_KEY: str = ""
+    OPENAI_MODEL: str = "gpt-4o-mini"
+    OPENAI_BASE_URL: str = "https://api.openai.com/v1"
+
+    # Embedding Settings
+    EMBEDDING_PROVIDER: str = "gemini"  # "gemini" | "openai" | "mock"
+    EMBEDDING_MODEL: str = "text-embedding-004"
+    EMBEDDING_DIMENSIONS: int = 768
+
+    # RAG Retrieval Configuration
+    RAG_TOP_K: int = 5
+    RAG_SIMILARITY_THRESHOLD: float = 0.35
+    RAG_MAX_CONTEXT_MESSAGES: int = 6
+    RAG_MAX_USER_MESSAGE_LENGTH: int = 2500
 
     # Logging
     LOG_LEVEL: str = "INFO"

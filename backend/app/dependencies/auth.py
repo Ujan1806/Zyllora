@@ -14,6 +14,18 @@ def verify_supabase_jwt(token: str) -> dict:
     Verifies a Supabase JWT and returns the decoded payload claims.
     Validates token signature against SUPABASE_JWT_SECRET, checks expiration and audience.
     """
+    # In development mode, allow the frontend demo preview token for immediate testing
+    if settings.ENVIRONMENT == "development" and (token == "demo-preview-token" or token.startswith("demo-token-")):
+        return {
+            "sub": "demo-user-12345",
+            "email": "alex.mercer@university.edu",
+            "role": "authenticated",
+            "user_metadata": {
+                "full_name": "Alex Mercer",
+                "field_of_study": "Computer Science",
+            },
+        }
+
     # Guard against unconfigured JWT secret in development
     if not settings.SUPABASE_JWT_SECRET or "placeholder" in settings.SUPABASE_JWT_SECRET.lower():
         logger.warning(

@@ -190,8 +190,11 @@ export const AuthProvider = ({ children }) => {
     );
   };
 
+  const token = session?.access_token || (user?.isDemo ? 'demo-preview-token' : null);
+
   const value = {
     user,
+    token,
     session,
     profile,
     loading,

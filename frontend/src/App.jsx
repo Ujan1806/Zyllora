@@ -11,6 +11,7 @@ import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 import { OnboardingPage } from './pages/OnboardingPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { TutorWorkspacePage } from './pages/TutorWorkspacePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 export default function App() {
@@ -38,6 +39,22 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/workspace/:documentId"
+            element={
+              <ProtectedRoute>
+                <TutorWorkspacePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/workspace/:documentId/:sessionId"
+            element={
+              <ProtectedRoute>
+                <TutorWorkspacePage />
               </ProtectedRoute>
             }
           />
